@@ -1,7 +1,5 @@
 package com.bridgelabz;
 
-import java.util.Random;
-
 public class EmployeeWage {
 
     static final int WAGE_PER_HOUR = 20;
@@ -11,18 +9,18 @@ public class EmployeeWage {
     public static void main(String[] args) {
         System.out.println("--- Welcome to Employee Wage Computation Program ---");
         int empHrs = 0;
-        int empWage = 0;
+        int empWage;
         int checkAttendance = (int)Math.floor(Math.random()*10)%3;
-        if(checkAttendance == IS_FULL_TIME){
-            System.out.println("Employee works for Full Time");
-            empHrs = 8;
-        }
-        else if(checkAttendance == IS_PART_TIME){
-            System.out.println("Employee works for Part Time");
-            empHrs = 4;
-        }
-        else{
-            System.out.println("Employee is absent");
+        switch (checkAttendance) {
+            case IS_FULL_TIME -> {
+                System.out.println("Employee works for Full Time");
+                empHrs = 8;
+            }
+            case IS_PART_TIME -> {
+                System.out.println("Employee works for Part Time");
+                empHrs = 4;
+            }
+            default -> System.out.println("Employee is absent");
         }
         empWage = empHrs * WAGE_PER_HOUR;
         System.out.println("Employee Wage is "+ empWage);
