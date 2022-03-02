@@ -8,21 +8,35 @@ public class EmployeeWage {
 
     public static void main(String[] args) {
         System.out.println("--- Welcome to Employee Wage Computation Program ---");
-        int empHrs = 0;
+        int empHrs;
         int empWage;
-        int checkAttendance = (int)Math.floor(Math.random()*10)%3;
-        switch (checkAttendance) {
-            case IS_FULL_TIME -> {
-                System.out.println("Employee works for Full Time");
-                empHrs = 8;
+        int totalEmpWage = 0;
+        int totalWorkingDays = 1;
+
+        //  TO CALCULATE WAGES FOR 20 DAYS
+        while (totalWorkingDays <= 20) {
+            int checkAttendance = (int) Math.floor(Math.random() * 10) % 3;
+            switch (checkAttendance) {
+                case IS_FULL_TIME -> {
+                    System.out.println("Employee works for Full Time");
+                    empHrs = 8;
+                }
+                case IS_PART_TIME -> {
+                    System.out.println("Employee works for Part Time");
+                    empHrs = 4;
+                }
+                default -> {
+                    System.out.println("Employee is absent");
+                    empHrs = 0;
+                }
             }
-            case IS_PART_TIME -> {
-                System.out.println("Employee works for Part Time");
-                empHrs = 4;
-            }
-            default -> System.out.println("Employee is absent");
+
+            //  TO CALCULATE DAILY WAGE AND MONTHLY WAGE
+            empWage = empHrs * WAGE_PER_HOUR;
+            System.out.println("Daily Wage : "+ empWage);
+            totalEmpWage = totalEmpWage + empWage;
+            System.out.println("Total Employee Wage : "+ totalEmpWage);
+            totalWorkingDays++;
         }
-        empWage = empHrs * WAGE_PER_HOUR;
-        System.out.println("Employee Wage is "+ empWage);
     }
 }
