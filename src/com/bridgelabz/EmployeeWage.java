@@ -8,9 +8,12 @@ public class EmployeeWage {
     static final int MAX_WORKING_HOURS = 100;
     static final int MAX_WORKING_DAYS = 20;
 
-
     public static void main(String[] args) {
         System.out.println("--- Welcome to Employee Wage Computation Program ---");
+        computeEmployeeWage();
+    }
+
+    private static void computeEmployeeWage() {
         int empHrs;
         int empWage;
         int totalEmpWage = 0;
