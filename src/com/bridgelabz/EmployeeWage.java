@@ -13,11 +13,15 @@ public class EmployeeWage {
         int empCheck=(int) Math.floor(Math.random() * 10) % 3;
         while (totalEmpHours <= workingHours && totalWorkingDays < workingDays){
             totalWorkingDays++;
-            switch (empCheck) {
-                case IS_PART_TIME -> empHours = 8;
-                case IS_FULL_TIME -> empHours = 4;
-                default -> {
-                }
+            switch(empCheck){
+                case IS_PART_TIME:
+                    empHours=8;
+                    break;
+                case IS_FULL_TIME:
+                    empHours=4;
+                    break;
+                default:
+                    empHours=0;
             }
             totalEmpHours += empHours;
         }
@@ -28,7 +32,7 @@ public class EmployeeWage {
     }
 
     public static void main(String[] args){
-        System.out.println("--- Welcome to Employee Wage Computation ---");
+        System.out.println("Welcome to Employee Wage Computation");
         //take user input for each company
         employeeMonthlyWage("DMart",20,20,100);
         employeeMonthlyWage("Reliance",10,25,150);
