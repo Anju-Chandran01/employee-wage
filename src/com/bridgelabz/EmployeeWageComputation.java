@@ -1,6 +1,8 @@
 package com.bridgelabz;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 interface EmployeeWage {
 
@@ -9,15 +11,16 @@ interface EmployeeWage {
 }
 
 public class EmployeeWageComputation implements EmployeeWage {
-
-    //CONSTANTS
+    // CONSTANTS
     public static final int IS_PART_TIME = 1;
     public static final int IS_FULL_TIME = 2;
 
     private final ArrayList<CompanyEmpWage> companies;
+    private final Map<String,Integer> companyWages;
 
     public EmployeeWageComputation() {
         companies = new ArrayList<>();
+        companyWages = new HashMap<>();
     }
 
     public void addCompanyEmpWage(String company ,int wagePerHour,int workingDays,int workingHours){
@@ -28,16 +31,15 @@ public class EmployeeWageComputation implements EmployeeWage {
         for (CompanyEmpWage company : companies) {
             int totalWage = computeEmpWage(company);
             company.setTotalEmpWage(totalWage);
-            System.out.println(company);
+            companyWages.put(company.getName(), totalWage);
         }
+        System.out.println("Sorted values in Map ---> " +companyWages);
     }
 
-    //CALCULATING MONTHLY WAGE OF EMPLOYEE
+    // CALCULATING MONTHLY WAGE OF EMPLOYEE
     private int computeEmpWage(CompanyEmpWage companyEmpWage){
-
-        //VARIABLES
+        //variables
         int empHours, totalWorkingDays=0, totalEmpHours=0;
-
         while (totalEmpHours <= companyEmpWage.workingHours && totalWorkingDays < companyEmpWage.workingDays){
             totalWorkingDays++;
             int empCheck=(int) Math.floor(Math.random() * 10) % 3;
@@ -48,12 +50,10 @@ public class EmployeeWageComputation implements EmployeeWage {
             };
             totalEmpHours += empHours;
         }
-
         System.out.println("Total employee working hour - "+totalEmpHours);
         System.out.println("Total employee working days - "+totalWorkingDays);
         return totalEmpHours * companyEmpWage.wagePerHour;
     }
-
     public static void main(String[] args){
         System.out.println("--- Welcome to Employee Wage Computation ---");
         EmployeeWageComputation empWage = new EmployeeWageComputation();
